@@ -5,6 +5,22 @@
    <BuildAction
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES">
+      <BuildActionEntries>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "07EBF29C1DC03EA300B8092A"
+               BuildableName = "ViewModelTestingDemo.app"
+               BlueprintName = "ViewModelTestingDemo"
+               ReferencedContainer = "container:ViewModelTestingDemo.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+      </BuildActionEntries>
    </BuildAction>
    <TestAction
       buildConfiguration = "Debug"
@@ -12,7 +28,36 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "07EBF2B01DC03EA300B8092A"
+               BuildableName = "ViewModelTestingDemoTests.xctest"
+               BlueprintName = "ViewModelTestingDemoTests"
+               ReferencedContainer = "container:ViewModelTestingDemo.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "07EBF2BB1DC03EA300B8092A"
+               BuildableName = "ViewModelTestingDemoUITests.xctest"
+               BlueprintName = "ViewModelTestingDemoUITests"
+               ReferencedContainer = "container:ViewModelTestingDemo.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "07EBF29C1DC03EA300B8092A"
+            BuildableName = "ViewModelTestingDemo.app"
+            BlueprintName = "ViewModelTestingDemo"
+            ReferencedContainer = "container:ViewModelTestingDemo.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -26,6 +71,23 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "07EBF29C1DC03EA300B8092A"
+            BuildableName = "ViewModelTestingDemo.app"
+            BlueprintName = "ViewModelTestingDemo"
+            ReferencedContainer = "container:ViewModelTestingDemo.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
+      <EnvironmentVariables>
+         <EnvironmentVariable
+            key = "OS_ACTIVITY_MODE"
+            value = "disable"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+      </EnvironmentVariables>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -35,6 +97,16 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "07EBF29C1DC03EA300B8092A"
+            BuildableName = "ViewModelTestingDemo.app"
+            BlueprintName = "ViewModelTestingDemo"
+            ReferencedContainer = "container:ViewModelTestingDemo.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

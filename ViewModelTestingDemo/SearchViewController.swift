@@ -1,0 +1,54 @@
+//
+//  SearchViewController.swift
+//  ViewModelTestingDemo
+//
+//  Created by Bryan Weber on 10/25/16.
+//  Copyright © 2016 Bryan Weber. All rights reserved.
+//
+
+import UIKit
+
+class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource {
+
+    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var tableView: UITableView!
+    
+    var albums: [Album] = []
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        searchBar.delegate = self
+    }
+    
+    //MARK: UISearchBarDelegate
+    
+    public func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+        guard let searchTerm = searchBar.text else { return }
+        
+        let networkingLayer = NetworkingLayer()
+        networkingLayer.searchSpotifyFor(searchTerm: searchTerm, type: .Album) { albums in
+            self.albums = albums
+            
+            DispatchQueue.main.sync {
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return albums.count
+    }
+    
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "AlbumSearchResultCell", for: indexPath) as! AlbumSearchResultTableViewCell
+        let album = albums[indexPath.row]
+        do {
+            let data = try Data(contentsOf: album.imageURL)
+            cell.coverImageView.image = UIImage(data: data)
+        } catch {
+            
+        }
+        return cell
+    }
+}
