@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AlamofireImage
 
 class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource {
 
@@ -43,12 +44,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AlbumSearchResultCell", for: indexPath) as! AlbumSearchResultTableViewCell
         let album = albums[indexPath.row]
-        do {
-            let data = try Data(contentsOf: album.imageURL)
-            cell.coverImageView.image = UIImage(data: data)
-        } catch {
-            
-        }
+        cell.coverImageView.af_setImage(withURL: album.imageURL)
         return cell
     }
 }
