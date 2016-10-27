@@ -28,7 +28,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
         guard let searchTerm = searchBar.text else { return }
         
         let networkingLayer = NetworkingLayer()
-        networkingLayer.searchSpotifyFor(searchTerm: searchTerm, type: .Album) { albums in
+        networkingLayer.searchFor(searchTerm: searchTerm, type: .Album) { albums in
             self.albums = albums
             
             DispatchQueue.main.sync {

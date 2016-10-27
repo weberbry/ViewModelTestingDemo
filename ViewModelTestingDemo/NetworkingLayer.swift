@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum SpotifySearchType {
+enum SearchType {
     case Album
     
     var parameter: String {
@@ -21,11 +21,11 @@ enum SpotifySearchType {
 
 class NetworkingLayer {
     
-    let baseSpotifySearchURLString = "https://api.spotify.com/v1/search?"
+    let baseSearchURLString = "https://itunes.apple.com/search?"
     
-    func searchSpotifyFor(searchTerm: String, type: SpotifySearchType, completionHandler:@escaping ([Album]) -> ()) {
+    func searchFor(searchTerm: String, type: SearchType, completionHandler:@escaping ([Album]) -> ()) {
         
-        let url = URL(string: spotifyAlbumSearchStringFor(searchTerm: searchTerm))
+        let url = URL(string: searchStringFor(searchTerm: searchTerm, type: type.parameter))
         let request = URLRequest(url: url!)
         
         let session = URLSession(configuration: URLSessionConfiguration.default)
@@ -33,25 +33,23 @@ class NetworkingLayer {
             if let data = data {
                 guard
                     let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : Any],
-                    let items = json?["albums"] as? [String : Any],
-                    let albums = items["items"] as? [[String: Any]]
+                    let albums = json?["results"] as? [[String: Any]]
                     else { return }
                 
                 var newAlbums: [Album] = []
                 
                 albums.forEach({ (album) in
                     guard
-                        let name = album["name"] as? String,
-                        let artists =  album["artists"] as? [[String: Any]],
-                        let artist = artists.first?["name"] as? String,
-                        let images =  album["images"] as? [[String: Any]],
-                        let image = images.first?["url"] as? String,
+                        let title = album["collectionName"] as? String,
+                        let artist =  album["artistName"] as? String,
+                        let releaseDate =  album["releaseDate"] as? String,
+                        let image =  album["artworkUrl60"] as? String,
                         let imageURL = URL(string: image)
                         else {
                             return
                     }
                     
-                    let newAlbum = Album(title: title, artist: artist, imageURL:imageURL)
+                    let newAlbum = Album(title: title, artist: artist, releaseDate: releaseDate, imageURL:imageURL)
                     newAlbums.append(newAlbum)
                 })
                 
@@ -61,8 +59,8 @@ class NetworkingLayer {
         task.resume()
     }
     
-    private func spotifyAlbumSearchStringFor(searchTerm: String) -> String {
+    private func searchStringFor(searchTerm: String, type: String) -> String {
         let searchTermWhitespaceRemoved = searchTerm.replacingOccurrences(of: " ", with: "+")
-        return baseSpotifySearchURLString + "q=" + searchTermWhitespaceRemoved + "&type=" + SpotifySearchType.Album.parameter
+        return baseSearchURLString + "term=" + searchTermWhitespaceRemoved + "&entity=" + type
     }
 }
