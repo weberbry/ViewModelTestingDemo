@@ -15,6 +15,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
     @IBOutlet weak var tableView: UITableView!
     
     var albums: [Album] = []
+    let viewModel = SearchViewControllerViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,26 +28,23 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
         searchBar.resignFirstResponder()
         guard let searchTerm = searchBar.text else { return }
         
-        let networkingLayer = NetworkingLayer()
-        networkingLayer.searchFor(searchTerm: searchTerm, type: .Album) { albums in
-            self.albums = albums
-            
+        viewModel.searchFor(searchTerm: searchTerm, type: .Album) { [weak self] in
             DispatchQueue.main.sync {
-                self.tableView.reloadData()
+                self?.tableView.reloadData()
             }
         }
     }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return albums.count
+        return viewModel.albumViewModels.count
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AlbumSearchResultCell", for: indexPath) as! AlbumSearchResultTableViewCell
-        let album = albums[indexPath.row]
-        cell.titleLabel.text = album.title
-        cell.artistLabel.text = album.artist
-        cell.coverImageView.af_setImage(withURL: album.imageURL)
+        let albumViewModels = viewModel.albumViewModelAt(index: indexPath.row)
+        cell.titleLabel.text = albumViewModels.title
+        cell.detailsLabel.text = albumViewModels.details
+        cell.coverImageView.af_setImage(withURL: albumViewModels.coverURL)
         return cell
     }
 }
