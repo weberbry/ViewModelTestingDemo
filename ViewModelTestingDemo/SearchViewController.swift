@@ -44,6 +44,8 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AlbumSearchResultCell", for: indexPath) as! AlbumSearchResultTableViewCell
         let album = albums[indexPath.row]
+        cell.titleLabel.text = album.title
+        cell.artistLabel.text = album.artist
         cell.coverImageView.af_setImage(withURL: album.imageURL)
         return cell
     }

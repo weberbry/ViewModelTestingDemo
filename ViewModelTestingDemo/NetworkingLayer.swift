@@ -51,7 +51,7 @@ class NetworkingLayer {
                             return
                     }
                     
-                    let newAlbum = Album(name: name, artist: artist, imageURL:imageURL)
+                    let newAlbum = Album(title: title, artist: artist, imageURL:imageURL)
                     newAlbums.append(newAlbum)
                 })
                 
