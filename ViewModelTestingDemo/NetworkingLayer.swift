@@ -46,9 +46,7 @@ class NetworkingLayer {
                         let releaseDate = self.dateFrom(string: releaseDateString),
                         let image =  album["artworkUrl60"] as? String,
                         let imageURL = URL(string: image)
-                        else {
-                            return
-                    }
+                        else { return }
                     
                     let newAlbum = Album(title: title, artist: artist, releaseDate: releaseDate, imageURL:imageURL)
                     newAlbums.append(newAlbum)
