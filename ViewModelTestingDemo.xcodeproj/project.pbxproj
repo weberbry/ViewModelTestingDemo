@@ -13,7 +13,6 @@
 		07C71B981DC22DB90041F8A4 /* SearchViewControllerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C71B971DC22DB90041F8A4 /* SearchViewControllerViewModel.swift */; };
 		07C71B9A1DC230DB0041F8A4 /* AlbumSearchResultCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C71B991DC230DB0041F8A4 /* AlbumSearchResultCellViewModel.swift */; };
 		07EBF2A11DC03EA300B8092A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07EBF2A01DC03EA300B8092A /* AppDelegate.swift */; };
-		07EBF2A31DC03EA300B8092A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07EBF2A21DC03EA300B8092A /* ViewController.swift */; };
 		07EBF2A61DC03EA300B8092A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07EBF2A41DC03EA300B8092A /* Main.storyboard */; };
 		07EBF2A81DC03EA300B8092A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07EBF2A71DC03EA300B8092A /* Assets.xcassets */; };
 		07EBF2AB1DC03EA300B8092A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07EBF2A91DC03EA300B8092A /* LaunchScreen.storyboard */; };
@@ -48,7 +47,6 @@
 		07C71B991DC230DB0041F8A4 /* AlbumSearchResultCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumSearchResultCellViewModel.swift; sourceTree = "<group>"; };
 		07EBF29D1DC03EA300B8092A /* ViewModelTestingDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ViewModelTestingDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07EBF2A01DC03EA300B8092A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		07EBF2A21DC03EA300B8092A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		07EBF2A51DC03EA300B8092A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		07EBF2A71DC03EA300B8092A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		07EBF2AA1DC03EA300B8092A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -117,7 +115,6 @@
 			isa = PBXGroup;
 			children = (
 				07EBF2A01DC03EA300B8092A /* AppDelegate.swift */,
-				07EBF2A21DC03EA300B8092A /* ViewController.swift */,
 				07EBF2CE1DC03F0300B8092A /* SearchViewController.swift */,
 				07EBF2A41DC03EA300B8092A /* Main.storyboard */,
 				07EBF2A71DC03EA300B8092A /* Assets.xcassets */,
@@ -358,7 +355,6 @@
 				07EBF2CF1DC03F0300B8092A /* SearchViewController.swift in Sources */,
 				07C71B9A1DC230DB0041F8A4 /* AlbumSearchResultCellViewModel.swift in Sources */,
 				07AB41911DC1103F0062B4A4 /* NetworkingLayer.swift in Sources */,
-				07EBF2A31DC03EA300B8092A /* ViewController.swift in Sources */,
 				07EBF2A11DC03EA300B8092A /* AppDelegate.swift in Sources */,
 				07AB41951DC116E90062B4A4 /* AlbumSearchResultTableViewCell.swift in Sources */,
 				07C71B981DC22DB90041F8A4 /* SearchViewControllerViewModel.swift in Sources */,

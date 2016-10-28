@@ -42,7 +42,8 @@ class NetworkingLayer {
                     guard
                         let title = album["collectionName"] as? String,
                         let artist =  album["artistName"] as? String,
-                        let releaseDate =  album["releaseDate"] as? String,
+                        let releaseDateString =  album["releaseDate"] as? String,
+                        let releaseDate = self.dateFrom(string: releaseDateString),
                         let image =  album["artworkUrl60"] as? String,
                         let imageURL = URL(string: image)
                         else {
@@ -62,5 +63,12 @@ class NetworkingLayer {
     private func searchStringFor(searchTerm: String, type: String) -> String {
         let searchTermWhitespaceRemoved = searchTerm.replacingOccurrences(of: " ", with: "+")
         return baseSearchURLString + "term=" + searchTermWhitespaceRemoved + "&entity=" + type
+    }
+    
+    private func dateFrom(string: String) -> Date? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
+        
+        return dateFormatter.date(from: string)
     }
 }

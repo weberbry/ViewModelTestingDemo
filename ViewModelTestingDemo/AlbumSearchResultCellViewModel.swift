@@ -17,11 +17,27 @@ class AlbumSearchResultCellViewModel {
     }
     
     var details: String {
-        return "\(album.artist) | \(album.releaseDate)"
+        return "\(album.artist) | \(releaseYear)"
     }
     
     var coverURL: URL {
         return album.imageURL
+    }
+    
+    var isCurrent: Bool {
+        let calendar = Calendar(identifier: .gregorian)
+        
+        let dateComponents = calendar.dateComponents([.year], from: Date())
+        let currentYear = String(dateComponents.year!)
+        
+        return currentYear == releaseYear
+    }
+    
+    private var releaseYear: String {
+        let calendar = Calendar(identifier: .gregorian)
+        
+        let dateComponents = calendar.dateComponents([.year], from: album.releaseDate)
+        return String(dateComponents.year!)
     }
     
     init(album: Album) {
