@@ -6,6 +6,12 @@ target 'ViewModelTestingDemo' do
     pod 'AlamofireImage', '~> 3.1'
 end
 
+target 'ViewModelTestingDemoTests' do
+    pod 'AlamofireImage', '~> 3.1'
+    pod 'OHHTTPStubs'
+    pod 'OHHTTPStubs/Swift'
+end
+
 post_install do |installer|
     installer.pods_project.targets.each do |target|
         target.build_configurations.each do |config|
