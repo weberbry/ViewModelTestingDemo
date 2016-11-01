@@ -15,7 +15,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
     @IBOutlet weak var tableView: UITableView!
     
     var albums: [Album] = []
-    let viewModel = SearchViewControllerViewModel()
+    let viewModel = SearchViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()

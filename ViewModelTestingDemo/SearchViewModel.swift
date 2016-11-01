@@ -8,7 +8,7 @@
 
 import Foundation
 
-class SearchViewControllerViewModel {
+class SearchViewModel {
     
     let networkingLayer = NetworkingLayer()
     var albumViewModels: [AlbumSearchResultCellViewModel] = []
