@@ -25,13 +25,15 @@ class NetworkingLayerTests: XCTestCase {
     func testAlbumSearch() {
         
         stub(condition: isMethodGET()) { _ in
-            let filePath = OHPathForFile("Fixtures.json", self.classForCoder)
+            let filePath = OHPathForFile("AlbumSearch.json", self.classForCoder)
             return OHHTTPStubsResponse(fileAtPath: filePath!,
                                        statusCode: 200,
                                        headers: [ "Content-Type": "application/json" ])
         }
         
         let networkLayer = NetworkingLayer()
+        
+        let albumSearchExpectation = expectation(description: "Validation")
         
         networkLayer.searchFor(searchTerm: "Phish", type: .Album) { albums in
             XCTAssert(albums.count == 3)
@@ -40,6 +42,13 @@ class NetworkingLayerTests: XCTestCase {
             XCTAssertEqual(album?.title, "Big Boat")
             XCTAssertEqual(album?.artist, "Phish")
             XCTAssertEqual(album?.imageURL.absoluteString, "http://is1.mzstatic.com/image/thumb/Music71/v4/b1/f2/ae/b1f2ae1a-4f9f-5d5c-e5d5-a5eff1557059/source/60x60bb.jpg")
+            albumSearchExpectation.fulfill()
+        }
+        
+        waitForExpectations(timeout: 100) { error in
+            if let error = error {
+                print("Error: \(error.localizedDescription)")
+            }
         }
     }    
 }

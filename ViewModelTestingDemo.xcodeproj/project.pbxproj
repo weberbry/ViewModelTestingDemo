@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		077988F51DC95AF500418F0A /* AlbumSearch.json in Resources */ = {isa = PBXBuildFile; fileRef = 077988F41DC95AF500418F0A /* AlbumSearch.json */; };
 		07919D101DC3B22D00D4BBBD /* AlbumSearchResultCellViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07919D0F1DC3B22D00D4BBBD /* AlbumSearchResultCellViewModelTests.swift */; };
 		07AB41911DC1103F0062B4A4 /* NetworkingLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AB41901DC1103F0062B4A4 /* NetworkingLayer.swift */; };
 		07AB41931DC1149C0062B4A4 /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AB41921DC1149C0062B4A4 /* Album.swift */; };
 		07AB41951DC116E90062B4A4 /* AlbumSearchResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AB41941DC116E90062B4A4 /* AlbumSearchResultTableViewCell.swift */; };
-		07B205981DC2E17900A82E1E /* Fixtures.json in Resources */ = {isa = PBXBuildFile; fileRef = 07B205971DC2E17900A82E1E /* Fixtures.json */; };
 		07B2059C1DC2E76000A82E1E /* NetworkingLayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B2059B1DC2E76000A82E1E /* NetworkingLayerTests.swift */; };
 		07C71B981DC22DB90041F8A4 /* SearchViewControllerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C71B971DC22DB90041F8A4 /* SearchViewControllerViewModel.swift */; };
 		07C71B9A1DC230DB0041F8A4 /* AlbumSearchResultCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C71B991DC230DB0041F8A4 /* AlbumSearchResultCellViewModel.swift */; };
@@ -43,11 +43,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		077988F41DC95AF500418F0A /* AlbumSearch.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AlbumSearch.json; sourceTree = "<group>"; };
 		07919D0F1DC3B22D00D4BBBD /* AlbumSearchResultCellViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumSearchResultCellViewModelTests.swift; sourceTree = "<group>"; };
 		07AB41901DC1103F0062B4A4 /* NetworkingLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkingLayer.swift; sourceTree = "<group>"; };
 		07AB41921DC1149C0062B4A4 /* Album.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
 		07AB41941DC116E90062B4A4 /* AlbumSearchResultTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumSearchResultTableViewCell.swift; sourceTree = "<group>"; };
-		07B205971DC2E17900A82E1E /* Fixtures.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Fixtures.json; sourceTree = "<group>"; };
 		07B2059B1DC2E76000A82E1E /* NetworkingLayerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkingLayerTests.swift; sourceTree = "<group>"; };
 		07C71B971DC22DB90041F8A4 /* SearchViewControllerViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewControllerViewModel.swift; sourceTree = "<group>"; };
 		07C71B991DC230DB0041F8A4 /* AlbumSearchResultCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumSearchResultCellViewModel.swift; sourceTree = "<group>"; };
@@ -141,7 +141,7 @@
 		07EBF2B41DC03EA300B8092A /* ViewModelTestingDemoTests */ = {
 			isa = PBXGroup;
 			children = (
-				07B205971DC2E17900A82E1E /* Fixtures.json */,
+				077988F41DC95AF500418F0A /* AlbumSearch.json */,
 				07B2059B1DC2E76000A82E1E /* NetworkingLayerTests.swift */,
 				07EBF2B71DC03EA300B8092A /* Info.plist */,
 				07919D0F1DC3B22D00D4BBBD /* AlbumSearchResultCellViewModelTests.swift */,
@@ -304,7 +304,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07B205981DC2E17900A82E1E /* Fixtures.json in Resources */,
+				077988F51DC95AF500418F0A /* AlbumSearch.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
