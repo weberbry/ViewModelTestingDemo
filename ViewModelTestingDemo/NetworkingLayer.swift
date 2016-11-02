@@ -8,24 +8,13 @@
 
 import Foundation
 
-enum SearchType {
-    case Album
-    
-    var parameter: String {
-        switch self {
-        case .Album:
-            return "album"
-        }
-    }
-}
-
 class NetworkingLayer {
     
     let baseSearchURLString = "https://itunes.apple.com/search?"
     
-    func searchFor(searchTerm: String, type: SearchType, completionHandler:@escaping ([Album]) -> ()) {
+    func searchFor(searchTerm: String, completionHandler:@escaping ([Album]) -> ()) {
         
-        let url = URL(string: searchStringFor(searchTerm: searchTerm, type: type.parameter))
+        let url = URL(string: searchStringFor(searchTerm: searchTerm))
         let request = URLRequest(url: url!)
         
         let session = URLSession(configuration: URLSessionConfiguration.default)
@@ -58,9 +47,9 @@ class NetworkingLayer {
         task.resume()
     }
     
-    private func searchStringFor(searchTerm: String, type: String) -> String {
+    private func searchStringFor(searchTerm: String) -> String {
         let searchTermWhitespaceRemoved = searchTerm.replacingOccurrences(of: " ", with: "+")
-        return baseSearchURLString + "term=" + searchTermWhitespaceRemoved + "&entity=" + type
+        return baseSearchURLString + "term=" + searchTermWhitespaceRemoved + "&entity=album"
     }
     
     private func dateFrom(string: String) -> Date? {

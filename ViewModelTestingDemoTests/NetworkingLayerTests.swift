@@ -35,7 +35,7 @@ class NetworkingLayerTests: XCTestCase {
         
         let albumSearchExpectation = expectation(description: "Validation")
         
-        networkLayer.searchFor(searchTerm: "Phish", type: .Album) { albums in
+        networkLayer.searchFor(searchTerm: "Phish") { albums in
             XCTAssert(albums.count == 3)
             
             let album = albums.first

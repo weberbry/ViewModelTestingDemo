@@ -28,7 +28,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
         searchBar.resignFirstResponder()
         guard let searchTerm = searchBar.text else { return }
         
-        viewModel.searchFor(searchTerm: searchTerm, type: .Album) { [weak self] in
+        viewModel.searchFor(searchTerm: searchTerm) { [weak self] in
             DispatchQueue.main.sync {
                 self?.tableView.reloadData()
             }

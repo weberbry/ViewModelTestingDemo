@@ -10,11 +10,15 @@ import Foundation
 
 class SearchViewModel {
     
-    let networkingLayer = NetworkingLayer()
+    let networkingLayer: NetworkingLayer
     var albumViewModels: [AlbumSearchResultCellViewModel] = []
     
-    func searchFor(searchTerm: String, type: SearchType, completionHandler:@escaping () -> ()) {
-        networkingLayer.searchFor(searchTerm: searchTerm, type: type) { [weak self] (albums) in
+    init(networkingLayer: NetworkingLayer = NetworkingLayer()) {
+        self.networkingLayer = networkingLayer
+    }
+    
+    func searchFor(searchTerm: String, completionHandler:@escaping () -> ()) {
+        networkingLayer.searchFor(searchTerm: searchTerm) { [weak self] (albums) in
             
             self?.albumViewModels = albums.map( {AlbumSearchResultCellViewModel(album: $0)} )
             completionHandler()
