@@ -10,7 +10,7 @@ import Foundation
 
 class SearchViewModel {
     
-    let networkingLayer: NetworkingLayer
+    private let networkingLayer: NetworkingLayer
     var albumViewModels: [AlbumSearchResultCellViewModel] = []
     
     init(networkingLayer: NetworkingLayer = NetworkingLayer()) {
@@ -19,8 +19,12 @@ class SearchViewModel {
     
     func searchFor(searchTerm: String, completionHandler:@escaping () -> ()) {
         networkingLayer.searchFor(searchTerm: searchTerm) { [weak self] (albums) in
+        
+            let unsortedViewModels = albums.map( {AlbumSearchResultCellViewModel(album: $0)} )
+            let currentViewModels = unsortedViewModels.filter({ $0.isCurrent })
+            let sortedNotCurrentAlbums = unsortedViewModels.filter({ !$0.isCurrent }).sorted { $0.title < $1.title }
+            self?.albumViewModels = currentViewModels + sortedNotCurrentAlbums
             
-            self?.albumViewModels = albums.map( {AlbumSearchResultCellViewModel(album: $0)} )
             completionHandler()
         }
     }
