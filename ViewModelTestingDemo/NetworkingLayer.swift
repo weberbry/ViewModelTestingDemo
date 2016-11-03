@@ -32,7 +32,7 @@ class NetworkingLayer {
                         let title = album["collectionName"] as? String,
                         let artist =  album["artistName"] as? String,
                         let releaseDateString =  album["releaseDate"] as? String,
-                        let releaseDate = self.dateFrom(string: releaseDateString),
+                        let releaseDate = Date(dateString: releaseDateString),
                         let image =  album["artworkUrl60"] as? String,
                         let imageURL = URL(string: image)
                         else { return }
@@ -50,12 +50,5 @@ class NetworkingLayer {
     private func searchStringFor(searchTerm: String) -> String {
         let searchTermWhitespaceRemoved = searchTerm.replacingOccurrences(of: " ", with: "+")
         return baseSearchURLString + "term=" + searchTermWhitespaceRemoved + "&entity=album"
-    }
-    
-    private func dateFrom(string: String) -> Date? {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
-        
-        return dateFormatter.date(from: string)
     }
 }

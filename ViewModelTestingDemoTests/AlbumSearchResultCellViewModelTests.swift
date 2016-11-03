@@ -29,18 +29,13 @@ class AlbumSearchResultCellViewModelTests: XCTestCase {
     }
     
     func testAlbumSearchResultCellViewModelProperties() {
-        let testDate = Date()
+        let releaseDate = Date(dateString: "2016-10-07T07:00:00Z")
         
-        let album = Album(title: "Big Boat", artist: "Phish", releaseDate: testDate, imageURL: URL(string: "http://www.google.com")!)
+        let album = Album(title: "Big Boat", artist: "Phish", releaseDate: releaseDate!, imageURL: URL(string: "http://www.google.com")!)
         let viewModel = AlbumSearchResultCellViewModel(album: album)
 
-        let calendar = Calendar(identifier: .gregorian)
-        
-        let dateComponents = calendar.dateComponents([.year], from: testDate)
-        let currentYear = String(dateComponents.year!)
-        
         XCTAssertEqual(viewModel.title, "Big Boat")
-        XCTAssertEqual(viewModel.details, "Phish | \(currentYear)")
+        XCTAssertEqual(viewModel.details, "Phish | 2016")
         XCTAssertEqual(viewModel.coverURL.absoluteString, "http://www.google.com")
     }
     
