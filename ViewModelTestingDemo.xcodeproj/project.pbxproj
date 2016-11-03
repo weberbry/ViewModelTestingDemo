@@ -11,6 +11,7 @@
 		073693961DC96C4F00936047 /* MockNetworkingLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073693951DC96C4F00936047 /* MockNetworkingLayer.swift */; };
 		077988F51DC95AF500418F0A /* AlbumSearch.json in Resources */ = {isa = PBXBuildFile; fileRef = 077988F41DC95AF500418F0A /* AlbumSearch.json */; };
 		07919D101DC3B22D00D4BBBD /* AlbumSearchResultCellViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07919D0F1DC3B22D00D4BBBD /* AlbumSearchResultCellViewModelTests.swift */; };
+		079756B11DCACE2E008E9F0A /* MockUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079756B01DCACE2E008E9F0A /* MockUserDefaults.swift */; };
 		07AB41911DC1103F0062B4A4 /* NetworkingLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AB41901DC1103F0062B4A4 /* NetworkingLayer.swift */; };
 		07AB41931DC1149C0062B4A4 /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AB41921DC1149C0062B4A4 /* Album.swift */; };
 		07AB41951DC116E90062B4A4 /* AlbumSearchResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AB41941DC116E90062B4A4 /* AlbumSearchResultTableViewCell.swift */; };
@@ -49,6 +50,7 @@
 		073693951DC96C4F00936047 /* MockNetworkingLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockNetworkingLayer.swift; sourceTree = "<group>"; };
 		077988F41DC95AF500418F0A /* AlbumSearch.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AlbumSearch.json; sourceTree = "<group>"; };
 		07919D0F1DC3B22D00D4BBBD /* AlbumSearchResultCellViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumSearchResultCellViewModelTests.swift; sourceTree = "<group>"; };
+		079756B01DCACE2E008E9F0A /* MockUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockUserDefaults.swift; sourceTree = "<group>"; };
 		07AB41901DC1103F0062B4A4 /* NetworkingLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkingLayer.swift; sourceTree = "<group>"; };
 		07AB41921DC1149C0062B4A4 /* Album.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
 		07AB41941DC116E90062B4A4 /* AlbumSearchResultTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumSearchResultTableViewCell.swift; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				073693951DC96C4F00936047 /* MockNetworkingLayer.swift */,
+				079756B01DCACE2E008E9F0A /* MockUserDefaults.swift */,
 			);
 			name = Mocking;
 			sourceTree = "<group>";
@@ -466,6 +469,7 @@
 				07AB41911DC1103F0062B4A4 /* NetworkingLayer.swift in Sources */,
 				073693961DC96C4F00936047 /* MockNetworkingLayer.swift in Sources */,
 				07EBF2A11DC03EA300B8092A /* AppDelegate.swift in Sources */,
+				079756B11DCACE2E008E9F0A /* MockUserDefaults.swift in Sources */,
 				07AB41951DC116E90062B4A4 /* AlbumSearchResultTableViewCell.swift in Sources */,
 				07C71B981DC22DB90041F8A4 /* SearchViewModel.swift in Sources */,
 				07AB41931DC1149C0062B4A4 /* Album.swift in Sources */,

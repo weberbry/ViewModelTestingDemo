@@ -81,4 +81,16 @@ class SearchViewModelTest: XCTestCase {
             }
         }
     }
+    
+    func testHasLoaded() {
+        let mockUserDefaults = MockUserDefaults()
+        let searchViewModel = SearchViewModel()
+        searchViewModel.userDefaults = mockUserDefaults
+        
+        XCTAssertFalse(searchViewModel.hasLoaded)
+        
+        searchViewModel.setHasLoaded(hasLoaded: true)
+        
+        XCTAssert(searchViewModel.hasLoaded)
+    }
 }
