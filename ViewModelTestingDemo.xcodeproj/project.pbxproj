@@ -16,6 +16,7 @@
 		079756B71DCB54EA008E9F0A /* CleanAlbumSearch.json in Resources */ = {isa = PBXBuildFile; fileRef = 079756B61DCB54EA008E9F0A /* CleanAlbumSearch.json */; };
 		079756B91DCB55E4008E9F0A /* MalformedAlbumSearch.json in Resources */ = {isa = PBXBuildFile; fileRef = 079756B81DCB55E4008E9F0A /* MalformedAlbumSearch.json */; };
 		079756BB1DCB5725008E9F0A /* DeficientAlbumSearch.json in Resources */ = {isa = PBXBuildFile; fileRef = 079756BA1DCB5725008E9F0A /* DeficientAlbumSearch.json */; };
+		079756BD1DCB5AC1008E9F0A /* DateExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079756BC1DCB5AC1008E9F0A /* DateExtensionTests.swift */; };
 		07AB41911DC1103F0062B4A4 /* NetworkingLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AB41901DC1103F0062B4A4 /* NetworkingLayer.swift */; };
 		07AB41931DC1149C0062B4A4 /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AB41921DC1149C0062B4A4 /* Album.swift */; };
 		07AB41951DC116E90062B4A4 /* AlbumSearchResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AB41941DC116E90062B4A4 /* AlbumSearchResultTableViewCell.swift */; };
@@ -59,6 +60,7 @@
 		079756B61DCB54EA008E9F0A /* CleanAlbumSearch.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CleanAlbumSearch.json; sourceTree = "<group>"; };
 		079756B81DCB55E4008E9F0A /* MalformedAlbumSearch.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MalformedAlbumSearch.json; sourceTree = "<group>"; };
 		079756BA1DCB5725008E9F0A /* DeficientAlbumSearch.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = DeficientAlbumSearch.json; sourceTree = "<group>"; };
+		079756BC1DCB5AC1008E9F0A /* DateExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtensionTests.swift; sourceTree = "<group>"; };
 		07AB41901DC1103F0062B4A4 /* NetworkingLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkingLayer.swift; sourceTree = "<group>"; };
 		07AB41921DC1149C0062B4A4 /* Album.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
 		07AB41941DC116E90062B4A4 /* AlbumSearchResultTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumSearchResultTableViewCell.swift; sourceTree = "<group>"; };
@@ -214,6 +216,7 @@
 				079756B61DCB54EA008E9F0A /* CleanAlbumSearch.json */,
 				079756B81DCB55E4008E9F0A /* MalformedAlbumSearch.json */,
 				079756BA1DCB5725008E9F0A /* DeficientAlbumSearch.json */,
+				079756BC1DCB5AC1008E9F0A /* DateExtensionTests.swift */,
 			);
 			path = ViewModelTestingDemoTests;
 			sourceTree = "<group>";
@@ -505,6 +508,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0736938E1DC9633C00936047 /* SearchViewModelTest.swift in Sources */,
+				079756BD1DCB5AC1008E9F0A /* DateExtensionTests.swift in Sources */,
 				07B2059C1DC2E76000A82E1E /* NetworkingLayerTests.swift in Sources */,
 				07919D101DC3B22D00D4BBBD /* AlbumSearchResultCellViewModelTests.swift in Sources */,
 			);
