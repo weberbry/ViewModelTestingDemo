@@ -23,7 +23,10 @@ class NetworkingLayer {
                 guard
                     let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : Any],
                     let albumsDictionary = json?["results"] as? [[String: Any]]
-                    else { return }
+                    else {
+                        completionHandler([])
+                        return
+                    }
                 
                 var albums: [Album] = []
                 

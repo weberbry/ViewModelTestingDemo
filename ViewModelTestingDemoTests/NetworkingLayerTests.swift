@@ -22,10 +22,10 @@ class NetworkingLayerTests: XCTestCase {
         super.tearDown()
     }
     
-    func testAlbumSearch() {
+    func testCleanAlbumSearchResult() {
         
         stub(condition: isMethodGET()) { _ in
-            let filePath = OHPathForFile("AlbumSearch.json", self.classForCoder)
+            let filePath = OHPathForFile("CleanAlbumSearch.json", self.classForCoder)
             return OHHTTPStubsResponse(fileAtPath: filePath!,
                                        statusCode: 200,
                                        headers: [ "Content-Type": "application/json" ])
@@ -33,7 +33,7 @@ class NetworkingLayerTests: XCTestCase {
         
         let networkLayer = NetworkingLayer()
         
-        let albumSearchExpectation = expectation(description: "Validation")
+        let albumSearchExpectation = expectation(description: "CleanAlbumSearchResult")
         
         networkLayer.searchFor(searchTerm: "Phish") { albums in
             XCTAssert(albums.count == 3)
@@ -48,7 +48,67 @@ class NetworkingLayerTests: XCTestCase {
         waitForExpectations(timeout: 100) { error in
             if let error = error {
                 print("Error: \(error.localizedDescription)")
+                XCTFail()
             }
         }
-    }    
+    }
+    
+    func testMalformedAlbumSearchResult() {
+        
+        stub(condition: isMethodGET()) { _ in
+            let filePath = OHPathForFile("MalformedAlbumSearch.json", self.classForCoder)
+            return OHHTTPStubsResponse(fileAtPath: filePath!,
+                                       statusCode: 200,
+                                       headers: [ "Content-Type": "application/json" ])
+        }
+        
+        let networkLayer = NetworkingLayer()
+        
+        let albumSearchExpectation = expectation(description: "MalformedAlbumSearchResult")
+        
+        networkLayer.searchFor(searchTerm: "Phish") { albums in
+            XCTAssert(albums.count == 0)
+            albumSearchExpectation.fulfill()
+        }
+        
+        waitForExpectations(timeout: 100) { error in
+            if let error = error {
+                print("Error: \(error.localizedDescription)")
+                XCTFail()
+            }
+        }
+    }
+    
+    func testDeficientAlbumSearchResult() {
+        
+        stub(condition: isMethodGET()) { _ in
+            let filePath = OHPathForFile("DeficientAlbumSearch.json", self.classForCoder)
+            return OHHTTPStubsResponse(fileAtPath: filePath!,
+                                       statusCode: 200,
+                                       headers: [ "Content-Type": "application/json" ])
+        }
+        
+        let networkLayer = NetworkingLayer()
+        
+        let albumSearchExpectation = expectation(description: "deficientAlbumSearchResult")
+        
+        networkLayer.searchFor(searchTerm: "Phish") { albums in
+            XCTAssert(albums.count == 2)
+            
+            let firstAlbum = albums.first
+            XCTAssertEqual(firstAlbum?.title, "Big Boat")
+            
+            let lastAlbum = albums.last
+            XCTAssertEqual(lastAlbum?.title, "Farmhouse")
+
+            albumSearchExpectation.fulfill()
+        }
+        
+        waitForExpectations(timeout: 100) { error in
+            if let error = error {
+                print("Error: \(error.localizedDescription)")
+                XCTFail()
+            }
+        }
+    }
 }
