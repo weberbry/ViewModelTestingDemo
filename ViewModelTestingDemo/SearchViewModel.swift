@@ -12,6 +12,12 @@ class SearchViewModel {
     
     private let networkingLayer: NetworkingLayer
     var albumViewModels: [AlbumSearchResultCellViewModel] = []
+    var userDefaults = UserDefaults.standard
+    private let hasLoadedKey = "hasLoaded"
+    
+    var hasLoaded: Bool {
+        return userDefaults.bool(forKey: hasLoadedKey)
+    }
     
     init(networkingLayer: NetworkingLayer = NetworkingLayer()) {
         self.networkingLayer = networkingLayer
@@ -31,6 +37,11 @@ class SearchViewModel {
     
     func albumViewModelAt(index: Int) -> AlbumSearchResultCellViewModel {
         return albumViewModels[index]
+    }
+    
+    func setHasLoaded(hasLoaded: Bool) {
+        userDefaults.set(hasLoaded, forKey: hasLoadedKey)
+        userDefaults.synchronize()
     }
 }
 

@@ -22,6 +22,21 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
         searchBar.delegate = self
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if !viewModel.hasLoaded {
+            showPopup()
+            viewModel.setHasLoaded(hasLoaded: true)
+        }
+    }
+    
+    func showPopup() {
+        let alert = UIAlertController(title: "Hello", message: "Upgrade Your Account", preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: "No", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     //MARK: UISearchBarDelegate
     
     public func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
