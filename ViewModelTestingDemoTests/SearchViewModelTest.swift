@@ -87,10 +87,10 @@ class SearchViewModelTest: XCTestCase {
         let searchViewModel = SearchViewModel()
         searchViewModel.userDefaults = mockUserDefaults
         
-        XCTAssertFalse(searchViewModel.hasLoaded)
+        XCTAssertFalse(searchViewModel.hasPreviouslyLoaded)
         
-        searchViewModel.setHasLoaded(hasLoaded: true)
+        searchViewModel.setHasPreviouslyLoaded(hasPreviouslyLoaded: true)
         
-        XCTAssert(searchViewModel.hasLoaded)
+        XCTAssert(searchViewModel.hasPreviouslyLoaded)
     }
 }

@@ -24,9 +24,9 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if !viewModel.hasLoaded {
+        if !viewModel.hasPreviouslyLoaded {
             showPopup()
-            viewModel.setHasLoaded(hasLoaded: true)
+            viewModel.setHasPreviouslyLoaded(hasPreviouslyLoaded: true)
         }
     }
     

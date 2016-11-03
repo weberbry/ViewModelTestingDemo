@@ -10,13 +10,15 @@ import Foundation
 
 class SearchViewModel {
     
+    //Require mocking for testing
     private let networkingLayer: NetworkingLayer
-    var albumViewModels: [AlbumSearchResultCellViewModel] = []
     var userDefaults = UserDefaults.standard
-    private let hasLoadedKey = "hasLoaded"
     
-    var hasLoaded: Bool {
-        return userDefaults.bool(forKey: hasLoadedKey)
+    var albumViewModels: [AlbumSearchResultCellViewModel] = []
+    private let hasPreviouslyLoadedKey = "hasPreviouslyLoaded"
+    
+    var hasPreviouslyLoaded: Bool {
+        return userDefaults.bool(forKey: hasPreviouslyLoadedKey)
     }
     
     init(networkingLayer: NetworkingLayer = NetworkingLayer()) {
@@ -39,8 +41,8 @@ class SearchViewModel {
         return albumViewModels[index]
     }
     
-    func setHasLoaded(hasLoaded: Bool) {
-        userDefaults.set(hasLoaded, forKey: hasLoadedKey)
+    func setHasPreviouslyLoaded(hasPreviouslyLoaded: Bool) {
+        userDefaults.set(hasPreviouslyLoaded, forKey: hasPreviouslyLoadedKey)
         userDefaults.synchronize()
     }
 }
