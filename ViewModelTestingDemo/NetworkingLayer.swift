@@ -22,26 +22,18 @@ class NetworkingLayer {
             if let data = data {
                 guard
                     let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : Any],
-                    let albums = json?["results"] as? [[String: Any]]
+                    let albumsDictionary = json?["results"] as? [[String: Any]]
                     else { return }
                 
-                var newAlbums: [Album] = []
+                var albums: [Album] = []
                 
-                albums.forEach({ (album) in
-                    guard
-                        let title = album["collectionName"] as? String,
-                        let artist =  album["artistName"] as? String,
-                        let releaseDateString =  album["releaseDate"] as? String,
-                        let releaseDate = Date(dateString: releaseDateString),
-                        let image =  album["artworkUrl60"] as? String,
-                        let imageURL = URL(string: image)
-                        else { return }
+                albumsDictionary.forEach({ (albumDictionary) in
+                    guard let album = self.albumFrom(dictionary: albumDictionary) else { return }
                     
-                    let newAlbum = Album(title: title, artist: artist, releaseDate: releaseDate, imageURL:imageURL)
-                    newAlbums.append(newAlbum)
+                    albums.append(album)
                 })
                 
-                completionHandler(newAlbums)
+                completionHandler(albums)
             }
         })
         task.resume()
@@ -50,5 +42,18 @@ class NetworkingLayer {
     private func searchStringFor(searchTerm: String) -> String {
         let searchTermWhitespaceRemoved = searchTerm.replacingOccurrences(of: " ", with: "+")
         return baseSearchURLString + "term=" + searchTermWhitespaceRemoved + "&entity=album"
+    }
+    
+    private func albumFrom(dictionary: [String: Any]) -> Album? {
+        guard
+            let title = dictionary["collectionName"] as? String,
+            let artist =  dictionary["artistName"] as? String,
+            let releaseDateString =  dictionary["releaseDate"] as? String,
+            let releaseDate = Date(dateString: releaseDateString),
+            let image =  dictionary["artworkUrl60"] as? String,
+            let imageURL = URL(string: image)
+            else { return nil }
+        
+        return Album(title: title, artist: artist, releaseDate: releaseDate, imageURL:imageURL)
     }
 }
