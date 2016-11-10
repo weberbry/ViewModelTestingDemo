@@ -7,6 +7,7 @@
 //
 
 import Foundation
+@testable import ViewModelTestingDemo
 
 class MockNetworkingLayer: NetworkingLayer {
     

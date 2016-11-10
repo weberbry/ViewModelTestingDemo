@@ -8,18 +8,10 @@
 
 import Foundation
 
-protocol SavedSettings {
-    func set(_ value: Bool, forKey defaultName: String)
-    func bool(forKey defaultName: String) -> Bool
-}
-
-extension UserDefaults: SavedSettings {}
-
 class SearchViewModel {
     
     //Require mocking for testing
     private let networkingLayer: NetworkingLayer
-    
     var savedSettings: SavedSettings = UserDefaults.standard
     
     var albumViewModels: [AlbumSearchResultCellViewModel] = []
