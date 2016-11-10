@@ -4,6 +4,7 @@ use_frameworks!
 
 target 'ViewModelTestingDemo' do
     pod 'AlamofireImage', '~> 3.1'
+    pod 'Intrepid', '~> 0.6.1'
 end
 
 target 'ViewModelTestingDemoTests' do
