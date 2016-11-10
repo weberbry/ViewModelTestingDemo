@@ -8,17 +8,25 @@
 
 import Foundation
 
+protocol SavedSettings {
+    func set(_ value: Bool, forKey defaultName: String)
+    func bool(forKey defaultName: String) -> Bool
+}
+
+extension UserDefaults: SavedSettings {}
+
 class SearchViewModel {
     
     //Require mocking for testing
     private let networkingLayer: NetworkingLayer
-    var userDefaults = UserDefaults.standard
+    
+    var savedSettings: SavedSettings = UserDefaults.standard
     
     var albumViewModels: [AlbumSearchResultCellViewModel] = []
     private let hasPreviouslyLoadedKey = "hasPreviouslyLoaded"
     
     var hasPreviouslyLoaded: Bool {
-        return userDefaults.bool(forKey: hasPreviouslyLoadedKey)
+        return savedSettings.bool(forKey: hasPreviouslyLoadedKey)
     }
     
     init(networkingLayer: NetworkingLayer = NetworkingLayer()) {
@@ -42,8 +50,7 @@ class SearchViewModel {
     }
     
     func setHasPreviouslyLoaded(hasPreviouslyLoaded: Bool) {
-        userDefaults.set(hasPreviouslyLoaded, forKey: hasPreviouslyLoadedKey)
-        userDefaults.synchronize()
+        savedSettings.set(hasPreviouslyLoaded, forKey: hasPreviouslyLoadedKey)
     }
 }
 

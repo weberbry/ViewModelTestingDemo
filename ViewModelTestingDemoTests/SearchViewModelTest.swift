@@ -83,9 +83,9 @@ class SearchViewModelTest: XCTestCase {
     }
     
     func testHasLoaded() {
-        let mockUserDefaults = MockUserDefaults()
+        let mockSavedSettings = MockSavedSettings()
         let searchViewModel = SearchViewModel()
-        searchViewModel.userDefaults = mockUserDefaults
+        searchViewModel.savedSettings = mockSavedSettings
         
         XCTAssertFalse(searchViewModel.hasPreviouslyLoaded)
         

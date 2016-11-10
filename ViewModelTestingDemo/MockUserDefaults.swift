@@ -8,14 +8,14 @@
 
 import Foundation
 
-class MockUserDefaults: UserDefaults {
+class MockSavedSettings: SavedSettings {
     var defaults: [String: Any] = [:]
     
-    override func set(_ value: Bool, forKey defaultName: String) {
+    func set(_ value: Bool, forKey defaultName: String) {
         defaults[defaultName] = value
     }
     
-    override func bool(forKey defaultName: String) -> Bool {
+    func bool(forKey defaultName: String) -> Bool {
         guard let boolValue = defaults[defaultName] as? Bool else { return false }
         return boolValue
     }
