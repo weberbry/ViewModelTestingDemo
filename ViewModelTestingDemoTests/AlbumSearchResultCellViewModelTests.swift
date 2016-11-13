@@ -21,13 +21,6 @@ class AlbumSearchResultCellViewModelTests: XCTestCase {
         super.tearDown()
     }
     
-    func testAlbumSearchResultCellViewModelInit() {
-        let album = Album(title: "Big Boat", artist: "Phish", releaseDate: Date(), imageURL: URL(string: "http://www.google.com")!)
-        let viewModel = AlbumSearchResultCellViewModel(album: album)
-        
-        XCTAssertNotNil(viewModel)
-    }
-    
     func testAlbumSearchResultCellViewModelProperties() {
         let releaseDate = Date(dateString: "2016-10-07T07:00:00Z")
         

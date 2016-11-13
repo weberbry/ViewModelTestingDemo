@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Intrepid
 
 class SearchViewModel {
     
@@ -27,11 +28,14 @@ class SearchViewModel {
     
     func searchFor(searchTerm: String, completionHandler:@escaping () -> ()) {
         networkingLayer.searchFor(searchTerm: searchTerm) { [weak self] (albums) in
-        
+            
+            //ip_sorter
             let unsortedViewModels = albums.map( {AlbumSearchResultCellViewModel(album: $0)} )
-            let currentViewModels = unsortedViewModels.filter({ $0.isCurrent })
-            let sortedNotCurrentAlbums = unsortedViewModels.filter({ !$0.isCurrent }).sorted { $0.title < $1.title }
-            self?.albumViewModels = currentViewModels + sortedNotCurrentAlbums
+            let (currentViewModels, unsortedNonCurrentViewModels) = unsortedViewModels.ip_split(withFilter: { $0.isCurrent })
+            let sortedNonCurrentViewModels = unsortedNonCurrentViewModels.sorted { $0.title < $1.title }
+            self?.albumViewModels = currentViewModels + sortedNonCurrentViewModels
+
+            //non_ip_sorter
             
             completionHandler()
         }
