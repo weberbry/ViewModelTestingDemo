@@ -1,5 +1,5 @@
 //
-//  SavedSettings.swift
+//  PersistenceLayer.swift
 //  ViewModelTestingDemo
 //
 //  Created by Bryan Weber on 11/9/16.
@@ -8,9 +8,9 @@
 
 import Foundation
 
-protocol SavedSettings {
+protocol PersistenceLayer {
     func set(_ value: Bool, forKey defaultName: String)
     func bool(forKey defaultName: String) -> Bool
 }
 
-extension UserDefaults: SavedSettings {}
+extension UserDefaults: PersistenceLayer {}

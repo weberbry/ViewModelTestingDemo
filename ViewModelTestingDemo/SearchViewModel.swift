@@ -13,13 +13,13 @@ class SearchViewModel {
     
     //Require mocking for testing
     private let networkingLayer: NetworkingLayer
-    var savedSettings: SavedSettings = UserDefaults.standard
+    var persistenceLayer: PersistenceLayer = UserDefaults.standard
     
     var albumViewModels: [AlbumSearchResultCellViewModel] = []
     private let hasPreviouslyLoadedKey = "hasPreviouslyLoaded"
     
     var hasPreviouslyLoaded: Bool {
-        return savedSettings.bool(forKey: hasPreviouslyLoadedKey)
+        return persistenceLayer.bool(forKey: hasPreviouslyLoadedKey)
     }
     
     init(networkingLayer: NetworkingLayer = NetworkingLayer()) {
@@ -46,7 +46,7 @@ class SearchViewModel {
     }
     
     func setHasPreviouslyLoaded(hasPreviouslyLoaded: Bool) {
-        savedSettings.set(hasPreviouslyLoaded, forKey: hasPreviouslyLoadedKey)
+        persistenceLayer.set(hasPreviouslyLoaded, forKey: hasPreviouslyLoadedKey)
     }
 }
 

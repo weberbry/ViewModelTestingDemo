@@ -9,7 +9,7 @@
 import Foundation
 @testable import ViewModelTestingDemo
 
-class MockSavedSettings: SavedSettings {
+class MockPersistenceLayer: PersistenceLayer {
     var defaults: [String: Any] = [:]
     
     func set(_ value: Bool, forKey defaultName: String) {
