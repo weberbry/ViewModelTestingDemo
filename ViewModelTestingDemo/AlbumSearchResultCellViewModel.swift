@@ -10,7 +10,7 @@ import Foundation
 
 class AlbumSearchResultCellViewModel {
     
-    let album: Album
+    private let album: Album
     
     var title: String {
         return album.title
