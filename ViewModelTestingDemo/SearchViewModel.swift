@@ -26,6 +26,10 @@ class SearchViewModel {
         self.networkingLayer = networkingLayer
     }
     
+    func albumViewModelAt(index: Int) -> AlbumSearchResultCellViewModel {
+        return albumViewModels[index]
+    }
+
     func searchFor(searchTerm: String, completionHandler:@escaping () -> ()) {
         networkingLayer.searchFor(searchTerm: searchTerm) { [weak self] (albums) in
             
@@ -39,9 +43,6 @@ class SearchViewModel {
         }
     }
     
-    func albumViewModelAt(index: Int) -> AlbumSearchResultCellViewModel {
-        return albumViewModels[index]
-    }
     
     func setHasPreviouslyLoaded(hasPreviouslyLoaded: Bool) {
         persistenceLayer.set(hasPreviouslyLoaded, forKey: hasPreviouslyLoadedKey)

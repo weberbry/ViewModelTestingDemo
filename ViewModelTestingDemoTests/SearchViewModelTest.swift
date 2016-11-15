@@ -21,6 +21,8 @@ class SearchViewModelTest: XCTestCase {
         super.tearDown()
     }
     
+    //testAlbumViewModelAtIndex
+    
     //testBasicAlbumSearch
     
     //testSortedAlbumSearch
