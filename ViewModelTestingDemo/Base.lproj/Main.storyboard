@@ -4,6 +4,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -22,14 +23,14 @@
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="K28-fP-el9">
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ftJ-x0-fx9">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="75" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ftJ-x0-fx9">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AlbumSearchResultCell" id="Doh-mR-3TJ" customClass="AlbumSearchResultTableViewCell" customModule="ViewModelTestingDemo" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AlbumSearchResultCell" rowHeight="75" id="Doh-mR-3TJ" customClass="AlbumSearchResultTableViewCell" customModule="ViewModelTestingDemo" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="75"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Doh-mR-3TJ" id="2TW-gE-9IX">
-                                            <frame key="frameInset" width="375" height="43"/>
+                                            <frame key="frameInset" width="375" height="74.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RZB-Fn-o3i">
@@ -37,15 +38,33 @@
                                                         <constraint firstAttribute="width" secondItem="RZB-Fn-o3i" secondAttribute="height" multiplier="1:1" id="Qzx-7y-REa"/>
                                                     </constraints>
                                                 </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Qk-Yl-1yF">
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SaU-7x-Gaj">
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="SaU-7x-Gaj" firstAttribute="trailing" secondItem="4Qk-Yl-1yF" secondAttribute="trailing" id="89p-tG-CDm"/>
                                                 <constraint firstItem="RZB-Fn-o3i" firstAttribute="top" secondItem="2TW-gE-9IX" secondAttribute="top" id="ADp-4o-sVr"/>
+                                                <constraint firstItem="SaU-7x-Gaj" firstAttribute="leading" secondItem="4Qk-Yl-1yF" secondAttribute="leading" id="D9u-p5-sM3"/>
+                                                <constraint firstItem="4Qk-Yl-1yF" firstAttribute="leading" secondItem="RZB-Fn-o3i" secondAttribute="trailing" constant="10" id="Gae-yR-zB0"/>
                                                 <constraint firstAttribute="bottom" secondItem="RZB-Fn-o3i" secondAttribute="bottom" id="Tgq-E6-qmK"/>
+                                                <constraint firstItem="4Qk-Yl-1yF" firstAttribute="top" secondItem="2TW-gE-9IX" secondAttribute="topMargin" constant="10" id="acQ-bH-dWk"/>
+                                                <constraint firstItem="SaU-7x-Gaj" firstAttribute="top" secondItem="4Qk-Yl-1yF" secondAttribute="bottom" constant="8" id="cJD-F0-ZS8"/>
                                                 <constraint firstItem="RZB-Fn-o3i" firstAttribute="leading" secondItem="2TW-gE-9IX" secondAttribute="leading" id="gxu-E0-bQu"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="4Qk-Yl-1yF" secondAttribute="trailing" constant="10" id="y8P-H3-vFy"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="coverImageView" destination="RZB-Fn-o3i" id="N0n-Nj-Nsh"/>
+                                            <outlet property="detailsLabel" destination="SaU-7x-Gaj" id="mjl-Rd-9vY"/>
+                                            <outlet property="titleLabel" destination="4Qk-Yl-1yF" id="eJq-bJ-HGg"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

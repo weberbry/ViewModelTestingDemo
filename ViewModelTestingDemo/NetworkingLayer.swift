@@ -8,24 +8,13 @@
 
 import Foundation
 
-enum SpotifySearchType {
-    case Album
-    
-    var parameter: String {
-        switch self {
-        case .Album:
-            return "album"
-        }
-    }
-}
-
 class NetworkingLayer {
     
-    let baseSpotifySearchURLString = "https://api.spotify.com/v1/search?"
+    let baseSearchURLString = "https://itunes.apple.com/search?"
     
-    func searchSpotifyFor(searchTerm: String, type: SpotifySearchType, completionHandler:@escaping ([Album]) -> ()) {
+    func searchFor(searchTerm: String, completionHandler:@escaping ([Album]) -> ()) {
         
-        let url = URL(string: spotifyAlbumSearchStringFor(searchTerm: searchTerm))
+        let url = URL(string: searchStringFor(searchTerm: searchTerm))
         let request = URLRequest(url: url!)
         
         let session = URLSession(configuration: URLSessionConfiguration.default)
@@ -33,36 +22,41 @@ class NetworkingLayer {
             if let data = data {
                 guard
                     let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : Any],
-                    let items = json?["albums"] as? [String : Any],
-                    let albums = items["items"] as? [[String: Any]]
-                    else { return }
-                
-                var newAlbums: [Album] = []
-                
-                albums.forEach({ (album) in
-                    guard
-                        let name = album["name"] as? String,
-                        let artists =  album["artists"] as? [[String: Any]],
-                        let artist = artists.first?["name"] as? String,
-                        let images =  album["images"] as? [[String: Any]],
-                        let image = images.first?["url"] as? String,
-                        let imageURL = URL(string: image)
-                        else {
-                            return
+                    let albumsDictionary = json?["results"] as? [[String: Any]]
+                    else {
+                        completionHandler([])
+                        return
                     }
+                
+                var albums: [Album] = []
+                
+                albumsDictionary.forEach({ (albumDictionary) in
+                    guard let album = self.albumFrom(dictionary: albumDictionary) else { return }
                     
-                    let newAlbum = Album(name: name, artist: artist, imageURL:imageURL)
-                    newAlbums.append(newAlbum)
+                    albums.append(album)
                 })
                 
-                completionHandler(newAlbums)
+                completionHandler(albums)
             }
         })
         task.resume()
     }
     
-    private func spotifyAlbumSearchStringFor(searchTerm: String) -> String {
+    private func searchStringFor(searchTerm: String) -> String {
         let searchTermWhitespaceRemoved = searchTerm.replacingOccurrences(of: " ", with: "+")
-        return baseSpotifySearchURLString + "q=" + searchTermWhitespaceRemoved + "&type=" + SpotifySearchType.Album.parameter
+        return baseSearchURLString + "term=" + searchTermWhitespaceRemoved + "&entity=album"
+    }
+    
+    private func albumFrom(dictionary: [String: Any]) -> Album? {
+        guard
+            let title = dictionary["collectionName"] as? String,
+            let artist =  dictionary["artistName"] as? String,
+            let releaseDateString =  dictionary["releaseDate"] as? String,
+            let releaseDate = Date(dateString: releaseDateString),
+            let image =  dictionary["artworkUrl60"] as? String,
+            let imageURL = URL(string: image)
+            else { return nil }
+        
+        return Album(title: title, artist: artist, releaseDate: releaseDate, imageURL:imageURL)
     }
 }

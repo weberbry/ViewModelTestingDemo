@@ -9,13 +9,15 @@
 import Foundation
 
 struct Album {
-    let name: String
+    let title: String
     let artist: String
+    let releaseDate: Date
     let imageURL: URL
     
-    init(name: String, artist: String, imageURL: URL) {
-        self.name = name
+    init(title: String, artist: String, releaseDate: Date, imageURL: URL) {
+        self.title = title
         self.artist = artist
+        self.releaseDate = releaseDate
         self.imageURL = imageURL
     }
     

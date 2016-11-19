@@ -7,17 +7,33 @@
 //
 
 import UIKit
+import AlamofireImage
 
 class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     
-    var albums: [Album] = []
+    let viewModel = SearchViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if !viewModel.hasPreviouslyLoaded {
+            showPopup()
+            viewModel.setHasPreviouslyLoaded(hasPreviouslyLoaded: true)
+        }
+    }
+    
+    func showPopup() {
+        let alert = UIAlertController(title: "Hello", message: "Upgrade Your Account", preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: "No", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
     
     //MARK: UISearchBarDelegate
@@ -26,29 +42,23 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
         searchBar.resignFirstResponder()
         guard let searchTerm = searchBar.text else { return }
         
-        let networkingLayer = NetworkingLayer()
-        networkingLayer.searchSpotifyFor(searchTerm: searchTerm, type: .Album) { albums in
-            self.albums = albums
-            
+        viewModel.searchFor(searchTerm: searchTerm) { [weak self] in
             DispatchQueue.main.sync {
-                self.tableView.reloadData()
+                self?.tableView.reloadData()
             }
         }
     }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return albums.count
+        return viewModel.albumViewModels.count
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AlbumSearchResultCell", for: indexPath) as! AlbumSearchResultTableViewCell
-        let album = albums[indexPath.row]
-        do {
-            let data = try Data(contentsOf: album.imageURL)
-            cell.coverImageView.image = UIImage(data: data)
-        } catch {
-            
-        }
+        let albumViewModels = viewModel.albumViewModelAt(index: indexPath.row)
+        cell.titleLabel.text = albumViewModels.title
+        cell.detailsLabel.text = albumViewModels.details
+        cell.coverImageView.af_setImage(withURL: albumViewModels.coverURL)
         return cell
     }
 }
