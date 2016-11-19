@@ -33,16 +33,14 @@ class SearchViewModel {
     func searchFor(searchTerm: String, completionHandler:@escaping () -> ()) {
         networkingLayer.searchFor(searchTerm: searchTerm) { [weak self] (albums) in
             
-            self?.albumViewModels = albums.map( {AlbumSearchResultCellViewModel(album: $0)} )
-            
-            //ip_sorter
-
-            //non_ip_sorter
+            let unsortedViewModels = albums.map( {AlbumSearchResultCellViewModel(album: $0)} )
+            let (currentViewModels, unsortedNonCurrentViewModels) = unsortedViewModels.ip_split(withFilter: { $0.isCurrent })
+            let sortedNonCurrentViewModels = unsortedNonCurrentViewModels.sorted { $0.title < $1.title }
+            self?.albumViewModels = currentViewModels + sortedNonCurrentViewModels
             
             completionHandler()
         }
     }
-    
     
     func setHasPreviouslyLoaded(hasPreviouslyLoaded: Bool) {
         persistenceLayer.set(hasPreviouslyLoaded, forKey: hasPreviouslyLoadedKey)
